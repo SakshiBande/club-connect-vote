@@ -8,10 +8,18 @@ import { Separator } from '@/components/ui/separator';
 import { Card } from '@/components/ui/card';
 import { FileText } from 'lucide-react';
 
+interface Proposal {
+  id: number;
+  description: string;
+  voteCount: number;
+  created: Date;
+  hasVoted: boolean;
+}
+
 const Index = () => {
   const [isConnected, setIsConnected] = useState(false);
-  const [account, setAccount] = useState('');
-  const [proposals, setProposals] = useState([
+  const [account, setAccount] = useState<string>('');
+  const [proposals, setProposals] = useState<Proposal[]>([
     {
       id: 1,
       description: "Should we organize a monthly tech meetup for club members?",
@@ -35,16 +43,16 @@ const Index = () => {
     }
   ]);
 
-  const handleConnectionChange = (connected, walletAccount) => {
+  const handleConnectionChange = (connected: boolean, walletAccount?: string) => {
     setIsConnected(connected);
     setAccount(walletAccount || '');
   };
 
-  const handleSubmitProposal = async (description) => {
+  const handleSubmitProposal = async (description: string) => {
     // Simulate blockchain transaction delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    const newProposal = {
+    const newProposal: Proposal = {
       id: proposals.length + 1,
       description,
       voteCount: 0,
@@ -55,7 +63,7 @@ const Index = () => {
     setProposals(prev => [newProposal, ...prev]);
   };
 
-  const handleVote = async (proposalId) => {
+  const handleVote = async (proposalId: number) => {
     // Simulate blockchain transaction delay
     await new Promise(resolve => setTimeout(resolve, 1500));
     

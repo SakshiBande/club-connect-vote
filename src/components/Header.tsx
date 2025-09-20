@@ -2,7 +2,13 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Vote, Users, Zap } from 'lucide-react';
 
-const Header = ({ isConnected, totalProposals, totalVotes }) => {
+interface HeaderProps {
+  isConnected: boolean;
+  totalProposals: number;
+  totalVotes: number;
+}
+
+const Header = ({ isConnected, totalProposals, totalVotes }: HeaderProps) => {
   return (
     <div className="text-center space-y-6">
       {/* Main heading */}
