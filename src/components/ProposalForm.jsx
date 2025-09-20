@@ -6,16 +6,11 @@ import { Label } from '@/components/ui/label';
 import { PlusCircle, Sparkles } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
-interface ProposalFormProps {
-  onSubmit: (proposal: string) => void;
-  isConnected: boolean;
-}
-
-const ProposalForm = ({ onSubmit, isConnected }: ProposalFormProps) => {
+const ProposalForm = ({ onSubmit, isConnected }) => {
   const [proposal, setProposal] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!isConnected) {
@@ -44,7 +39,7 @@ const ProposalForm = ({ onSubmit, isConnected }: ProposalFormProps) => {
         title: "Proposal submitted!",
         description: "Your proposal has been added to the voting list",
       });
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: "Submission failed",
         description: error.message || "Failed to submit proposal",

@@ -3,15 +3,10 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Wallet, CheckCircle } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
-import '@/types/ethereum';
 
-interface WalletConnectProps {
-  onConnectionChange: (isConnected: boolean, account?: string) => void;
-}
-
-const WalletConnect = ({ onConnectionChange }: WalletConnectProps) => {
+const WalletConnect = ({ onConnectionChange }) => {
   const [isConnected, setIsConnected] = useState(false);
-  const [account, setAccount] = useState<string>('');
+  const [account, setAccount] = useState('');
   const [isConnecting, setIsConnecting] = useState(false);
 
   useEffect(() => {
@@ -44,7 +39,7 @@ const WalletConnect = ({ onConnectionChange }: WalletConnectProps) => {
     }
   };
 
-  const handleAccountsChanged = (accounts: string[]) => {
+  const handleAccountsChanged = (accounts) => {
     if (accounts.length === 0) {
       setIsConnected(false);
       setAccount('');
@@ -80,7 +75,7 @@ const WalletConnect = ({ onConnectionChange }: WalletConnectProps) => {
         title: "Wallet connected!",
         description: "You're now ready to vote and create proposals",
       });
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: "Connection failed",
         description: error.message || "Failed to connect wallet",
@@ -101,7 +96,7 @@ const WalletConnect = ({ onConnectionChange }: WalletConnectProps) => {
     });
   };
 
-  const formatAddress = (address: string) => {
+  const formatAddress = (address) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 

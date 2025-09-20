@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import mascotImage from '@/assets/voting-mascot.png';
 
-interface VotingMascotProps {
-  isConnected: boolean;
-  proposalCount: number;
-}
-
-const VotingMascot = ({ isConnected, proposalCount }: VotingMascotProps) => {
+const VotingMascot = ({ isConnected, proposalCount }) => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {

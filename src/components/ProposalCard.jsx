@@ -5,21 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Vote, Users, Calendar } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
-interface Proposal {
-  id: number;
-  description: string;
-  voteCount: number;
-  created: Date;
-  hasVoted: boolean;
-}
-
-interface ProposalCardProps {
-  proposal: Proposal;
-  onVote: (proposalId: number) => void;
-  isConnected: boolean;
-}
-
-const ProposalCard = ({ proposal, onVote, isConnected }: ProposalCardProps) => {
+const ProposalCard = ({ proposal, onVote, isConnected }) => {
   const [isVoting, setIsVoting] = useState(false);
 
   const handleVote = async () => {
@@ -48,7 +34,7 @@ const ProposalCard = ({ proposal, onVote, isConnected }: ProposalCardProps) => {
         title: "Vote cast!",
         description: "Your vote has been recorded",
       });
-    } catch (error: any) {
+    } catch (error) {
       toast({
         title: "Voting failed",
         description: error.message || "Failed to cast vote",
@@ -59,7 +45,7 @@ const ProposalCard = ({ proposal, onVote, isConnected }: ProposalCardProps) => {
     }
   };
 
-  const formatDate = (date: Date) => {
+  const formatDate = (date) => {
     return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
